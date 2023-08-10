@@ -1,0 +1,16 @@
+//Prefix sum 
+
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[]={1,2,3,4,5,6,7,8};
+        int pf[]=new int[8];
+        int n=8;
+        pf[0]=A[0];
+        for(int i=1;i<n;i++){
+            pf[i]=pf[i-1]+A[i];
+        }
+        for(int i=0;i<n;i++){
+            System.out.println(pf[i]);
+        }
+    }
+}
