@@ -1,0 +1,194 @@
+// Carry forward
+//Brute force TC:O(n^2)
+class HelloWorld {
+    public static void main(String[] args) {
+        String A="agbbgagbbgabbg";
+        int n=A.length();
+        int c=0;
+        for(int i=0;i<n;i++){
+            if(A.charAt(i)=='a'){
+                for(int j=i+1;j<n;j++){
+                    if(A.charAt(j)=='g'){
+                        c++;
+                    }
+                }
+                System.out.println(c);
+            }
+        }
+        System.out.println(c);
+    }
+}
+//total ag pairs =9
+
+// Using Carry forward from the right end
+class HelloWorld {
+    public static void main(String[] args) {
+        String A="agbbgagbbgabbg";
+        int n=A.length();
+        int c=0;
+        int ans=0;
+        for(int i=n-1;i>=0;i--){
+            if(A.charAt(i)=='a'){
+                ans+=c;
+                    }
+            if(A.charAt(i)=='g'){
+                c++;
+            }
+                }
+        System.out.println(ans);
+    }
+}
+//total ag pairs =9
+
+// Using Carry forward from the left end
+class HelloWorld {
+    public static void main(String[] args) {
+        String A="agbbgagbbgabbg";
+        int n=A.length();
+        int c=0;
+        int ans=0;
+        for(int i=0;i<n;i++){
+            if(A.charAt(i)=='g'){
+                ans+=c;
+                    }
+            if(A.charAt(i)=='a'){
+                c++;
+            }
+                }
+        System.out.println(ans);
+    }
+}
+//total ag pairs =9
+
+// Leaders in an array (an element is leader if it is strictly greater than the max of all elements on left)
+//Brute Force TC:O(n^2)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[]={3,2,4,5,2,7,-1,15};
+        int n=A.length;
+        int ans=1;
+        for(int i=1;i<n;i++){
+            int max=Integer.MIN_VALUE;
+            for(int j=0;j<=i-1;j++){
+                if(max<A[j]){
+                    max=A[j];
+                }
+            }
+                if(A[i]>max){
+                    ans++;
+                }
+                }
+        System.out.println(ans);
+    }
+}
+
+// Leaders in an array (an element is leader if it is strictly greater than the max of all elements on left)
+//Optimized approach TC:O(n)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[]={3,2,4,5,2,7,-1,15};
+        int n=A.length;
+        int ans=1;
+        int max=A[0];
+        for(int i=1;i<n;i++){
+            if(max<A[i]){
+                ans++;
+                max=A[i];
+            }
+                }
+        System.out.println(ans);
+    }
+}
+
+// Closest min max in a given array ,find the lengthof smallest subarry,which contains both min and max.
+//Brute Force TC:O(n^2)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[]={2,2,6,4,5,1,5,2,6,4,1,3,4};
+        int n=A.length;
+        int max=Integer.MIN_VALUE;
+        int min=Integer.MAX_VALUE;
+        for(int i=1;i<n;i++){
+            if(A[i]>max){
+                max=A[i];
+            }
+            if(A[i]<min){
+                min=A[i];
+            }
+        }
+        int ans=n;
+        for(int i=0;i<n;i++){
+            if(A[i]==min){
+                for(int j=i+1;j<n;j++){
+                    int len;
+                    if(A[j]==max){
+                        len=j-i+1;
+                        if(len<ans){
+                            ans=len;
+                        }
+                        break;
+                    }
+                }
+            }
+            if(A[i]==max){
+                for(int j=i+1;j<n;j++){
+                    int len=0;
+                    if(A[j]==min){
+                      len=j-i+1;
+                        if(len<ans){
+                            ans=len;
+                        }
+                        break;
+                    }  
+                }
+            }
+        }
+        System.out.println(min+" "+max);
+        System.out.println(ans);
+    }
+}
+
+// Closest min max in a given array ,find the lengthof smallest subarry,which contains both min and max.
+//Optimized approach TC:O(n)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[]={1,6,4,6,5,1,5,2,6,4,4,2,1,5};
+        int n=A.length;
+        int max=Integer.MIN_VALUE;
+        int min=Integer.MAX_VALUE;
+        for(int i=1;i<n;i++){
+            if(A[i]>max){
+                max=A[i];
+            }
+            if(A[i]<min){
+                min=A[i];
+            }
+        }
+        int maxi=-1;
+        int mini=-1;
+        int ans=n;
+        for(int i=n-1;i>=0;i--){
+          int len=0;
+          if(A[i]==min){
+              mini=i;
+              if(maxi!=-1){
+                  len=maxi-i+1;
+                  if(len<ans){
+                  ans=len;
+              }
+              }
+          }
+          else if(A[i]==max){
+              maxi=i;
+              if(mini!=-1){
+                  len=mini-i+1;
+                  if(len<ans){
+                  ans=len;
+              }
+              }
+          }
+        }
+        System.out.println(min+" "+max);
+        System.out.println(ans);
+    }
+}
