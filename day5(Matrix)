@@ -1,0 +1,183 @@
+// Print Row wise sum
+// TC:O(N^2)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[][]={{2,5,1},{1,2,1}};
+        int n=A.length;
+        int m=A[0].length;
+        for(int i=0;i<n;i++){
+            int sum=0;
+            for(int j=0;j<m;j++){
+                sum+=A[i][j];
+            }
+            System.out.println(sum);
+        }
+    }
+}
+
+// Print the diagonal element from left to right
+// TC:O(N^2)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[][]={{1,5,1},{1,2,1},{4,2,3}};
+        int n=A.length;
+        int m=A[0].length;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(i==j){
+                    System.out.println(A[i][j]);
+                }
+            }
+        }
+    }
+}
+
+// Print the diagonal element from right to left
+// TC:O(N^2)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[][]={{1,5,1},{1,2,1},{4,2,3}};
+        int n=A.length;
+        int m=A[0].length;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(i+j==n-1){
+                    System.out.println(A[i][j]);
+                }
+            }
+        }
+    }
+}
+
+// Print all the elements in upper triangle
+// TC:O(N^2)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[][]={{1,5,1},{1,2,1},{4,2,3}};
+        int n=A.length;
+        int m=A[0].length;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<m;j++){
+                    System.out.print(A[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+// To transpose a given Matrix
+// TC:O(N^2)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[][]={{1,5,1},{1,2,1},{4,2,3}};
+        int n=A.length;
+        int m=A[0].length;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                System.out.print(A[i][j]+" ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<m;j++){
+                    int temp=A[i][j];
+                    A[i][j]=A[j][i];
+                    A[j][i]=temp;
+            }
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                System.out.print(A[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+// To rotate a matrix by 90 degree clockwise
+//First Transpose the matrix and then reverse the rows
+// TC:O(N^2)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[][]={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
+        int n=A.length;
+        int m=A[0].length;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                System.out.print(A[i][j]+" ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        //To Transpose the matrix
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<m;j++){
+                    int temp=A[i][j];
+                    A[i][j]=A[j][i];
+                    A[j][i]=temp;
+            }
+        }
+        //To reverse the matrix
+        for(int i=0;i<n;i++){
+            int p1=0;
+            int p2=m-1;
+            while(p1<p2){
+                int temp=A[i][p1];
+                A[i][p1]=A[i][p2];
+                A[i][p2]=temp;
+                p1++;
+                p2--;
+            }
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                System.out.print(A[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+// To print the spiral matrix
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[][]={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
+        int n=A.length;
+        int m=A[0].length;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                System.out.print(A[i][j]+" ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        int row=0;
+        int col=0;
+        while(n>1){
+            for(int k=1;k<n;k++){
+                System.out.print(A[row][col]+" ");
+                col++;
+            }
+            for(int k=1;k<n;k++){
+                System.out.print(A[row][col]+" ");
+                row++;
+            }
+            for(int k=1;k<n;k++){
+                System.out.print(A[row][col]+" ");
+                col--;
+            }
+            for(int k=1;k<n;k++){
+                System.out.print(A[row][col]+" ");
+                row--;
+            }
+            row++;
+            col++;
+            n=n-2;
+        }
+        if(n==1){
+            System.out.print(A[row][col]);
+        }
+    }
+}
