@@ -1,0 +1,115 @@
+//No of subarray in a array :(n*(n+1))/2
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[]={2,5,3,9};
+        int n=A.length;
+        int count=0;
+//Printing all the subarrays and counting the number of subarrays
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                count++;
+                for(int k=i;k<=j;k++){
+                    System.out.print(A[k]);
+                }
+                System.out.println();
+            }
+        }
+        System.out.println(count);
+    }
+}
+
+// Sum of all the subarray elements
+//Brute force TC:O(N^3)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[]={2,5};
+        int n=A.length;
+        int Sum=0;
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                for(int k=i;k<=j;k++){
+                    Sum+=A[k];
+                }
+            }
+        }
+        System.out.println(Sum);
+    }
+}
+
+// Sum of all the subarray elements
+//Using Prefix sum TC:O(N^2)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[]={2,5};
+        int n=A.length;
+        int Sum=0;
+        int pf[]=new int[n];
+        pf[0]=A[0];
+        for(int i=1;i<n;i++){
+            pf[i]=pf[i-1]+A[i];
+        }
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                if(i==0){
+                    System.out.println(pf[j]);
+                    Sum+=pf[j];
+                }
+                else{
+                    System.out.println(pf[j]-pf[i-1]);
+                    Sum+=pf[j]-pf[i-1];
+                }
+            }
+        }
+        System.out.println(Sum);
+    }
+}
+
+// Sum of all the subarray starting with index 0
+//TC:O(N^2)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[]={2,5};
+        int n=A.length;
+        int Sum=0;
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                Sum=Sum+A[j];
+            }
+        }
+        System.out.println(Sum);
+    }
+}
+
+// Sum of all the subarrays 
+//TC:O(N^2)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[]={2,5};
+        int n=A.length;
+        int total=0;
+        for(int i=0;i<n;i++){
+            int Sum=0;
+            for(int j=i;j<n;j++){
+                Sum=Sum+A[j];
+                total+=Sum;
+            }
+        }
+        System.out.println(total);
+    }
+}
+
+// Sum of all the subarrays 
+//Best optimized approach TC:O(N)
+class HelloWorld {
+    public static void main(String[] args) {
+        int A[]={2,5};
+        int n=A.length;
+        int freq=0;
+        int total=0;
+        for(int i=0;i<n;i++){
+            freq=(i+1)*(n-i);
+            total+=A[i]*freq;
+        }
+        System.out.println(total);
+    }
+}
